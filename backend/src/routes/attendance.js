@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const client = require('../config/cassandra');
-const { TimeUuid } = require('cassandra-driver').types;
 
-router.post('/checkin', async (req, res) => {
+router.post('/classes/:classId/checkin', async (req, res) => {
   try {
+    const classId = req.params.classId;
     const { session_id, user_id, course_id, semester, status, note } = req.body;
-    const checkedInAt = new Date(); 
+    const checkedInAt = new Date();
 
     const queries = [
       {
