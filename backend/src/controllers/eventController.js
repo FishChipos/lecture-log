@@ -1,10 +1,11 @@
 const eventRepo = require('../repositories/eventRepo');
+const { calculateBucket } = require('../utils/bucketCalculator');
 const { TimeUuid } = require('cassandra-driver').types;
 
 const getEvents = async (req, res) => {
     try {
         const courseId = req.params.courseId;
-        const bucket = Math.floor(Date.now() / 604800000);
+        const bucket = calculateBucket();
 
         const result = await eventRepo.getEventsByCourseAndBucket(courseId, bucket);
         
@@ -22,7 +23,7 @@ const createEvent = async (req, res) => {
     try {
         const { course_id, event_type, title, description, created_by, attachment_url, payload } = req.body;
         
-        const bucket = Math.floor(Date.now() / 604800000);
+        const bucket = calculateBucket();
         const eventId = TimeUuid.now();
 
         const params = [
