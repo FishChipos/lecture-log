@@ -1,6 +1,12 @@
-import { Form, redirect, type ActionFunctionArgs, useNavigation } from "react-router";
+import {
+    Form,
+    redirect,
+    type ActionFunctionArgs,
+    useNavigation,
+} from "react-router";
 import { TextField } from "~/components/text-field";
 import { Button } from "~/components/button";
+import { commitSession, getSession } from "~/session";
 
 export default function Login() {
     const navigation = useNavigation();
@@ -13,12 +19,9 @@ export default function Login() {
             <Form method="post" className="flex flex-col gap-4">
                 <div className="flex flex-col w-lg p-4 gap-4 bg-white text-neutral-800 rounded-sm">
                     <div>Email</div>
-                    <TextField 
-                        name="email"
-                        placeholder="yours@email.com"
-                    />
+                    <TextField name="email" placeholder="yours@email.com" />
                     <div>Password</div>
-                    <TextField 
+                    <TextField
                         name="password"
                         placeholder="verySecurePassword123!!"
                     />
@@ -28,11 +31,9 @@ export default function Login() {
                         type="submit"
                         className="w-fit self-end bg-yellow-400 text-neutral-800 hover:bg-yellow-500"
                     >
-                        {
-                            navigation.formAction === "/auth/login"
+                        {navigation.formAction === "/auth/login"
                             ? "Submitting..."
-                            : "Submit"
-                        }
+                            : "Submit"}
                     </Button>
                 </div>
             </Form>
@@ -48,5 +49,13 @@ export async function action({ request }: ActionFunctionArgs) {
 
     console.log(`Got email ${email} and password ${password}`);
 
-    return redirect("/dashboard");
+    const session = await getSession(request.headers.get("Cookie"));
+
+    session.set("userId", "1");
+
+    return redirect("/dashboard", {
+        headers: {
+            "Set-Cookie": await commitSession(session),
+        }
+    });
 }

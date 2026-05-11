@@ -1,4 +1,9 @@
-import { Form, redirect, type ActionFunctionArgs, useNavigation } from "react-router";
+import {
+    Form,
+    redirect,
+    type ActionFunctionArgs,
+    useNavigation,
+} from "react-router";
 import { TextField } from "~/components/text-field";
 import { Button } from "~/components/button";
 
@@ -13,17 +18,11 @@ export default function Register() {
             <Form method="post" className="flex flex-col gap-4">
                 <div className="flex flex-col w-lg p-4 gap-4 bg-white text-neutral-800 rounded-sm">
                     <div>Name</div>
-                    <TextField 
-                        name="name"
-                        placeholder="Your Name"
-                    />
+                    <TextField name="name" placeholder="Your Name" />
                     <div>Email</div>
-                    <TextField 
-                        name="email"
-                        placeholder="yours@email.com"
-                    />
+                    <TextField name="email" placeholder="yours@email.com" />
                     <div>Password</div>
-                    <TextField 
+                    <TextField
                         name="password"
                         placeholder="verySecurePassword123!!"
                     />
@@ -33,11 +32,9 @@ export default function Register() {
                         type="submit"
                         className="w-fit self-end bg-yellow-400 text-neutral-800 hover:bg-yellow-500"
                     >
-                        {
-                            navigation.formAction === "/auth/register"                            
+                        {navigation.formAction === "/auth/register"
                             ? "Submitting..."
-                            : "Submit"
-                        }
+                            : "Submit"}
                     </Button>
                 </div>
             </Form>
