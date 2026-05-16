@@ -5,6 +5,10 @@ require('dotenv').config();
 const cassandraClient = require('./config/cassandra');
 const attendanceRouter = require('./routes/attendance');
 const eventsRouter = require('./routes/events');
+const usersRouter = require('./routes/users');
+const coursesRouter = require('./routes/courses');
+const sessionsRouter = require('./routes/sessions');
+const materialsRouter = require('./routes/materials');
 
 const app = express();
 
@@ -15,6 +19,10 @@ app.use(express.json());
 // Registrasi Routes
 app.use('/api/attendance', attendanceRouter);
 app.use('/api/events', eventsRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/courses', coursesRouter);
+app.use('/api/sessions', sessionsRouter);
+app.use('/api/materials', materialsRouter);
 
 // Inisialisasi Koneksi Database dan Server
 cassandraClient.connect()

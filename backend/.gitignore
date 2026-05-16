@@ -1,4 +1,6 @@
 # .gitignore
 node_modules/
 .env
+env.circ
+lectureLog-token.json
 secure-connect-*.zip
