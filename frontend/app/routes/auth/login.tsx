@@ -3,6 +3,7 @@ import {
     redirect,
     type ActionFunctionArgs,
     useNavigation,
+    type LoaderFunctionArgs,
 } from "react-router";
 import { TextField } from "~/components/text-field";
 import { Button } from "~/components/button";
@@ -39,6 +40,10 @@ export default function Login() {
             </Form>
         </div>
     );
+}
+
+export async function loader({ request }: LoaderFunctionArgs) {
+
 }
 
 export async function action({ request }: ActionFunctionArgs) {

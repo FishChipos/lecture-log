@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigation } from "react-router";
 import type { User } from "~/types";
+import { Button } from "~/components/button";
 
 function NavBarLink({
     children,
@@ -17,7 +18,7 @@ function NavBarLink({
     return (
         <Link
             to={href}
-            className={`flex h-full p-4 justify-center items-center transition bg-yellow-400 text-neutral-800 hover:bg-yellow-500 hover:underline ${active ? "bg-yellow-500" : ""} ${className ?? ""} ${active ? (activeClassName ?? "") : ""}`}
+            className={`flex h-full p-4 justify-center items-center transition bg-yellow-400 font-semibold text-neutral-800 hover:bg-yellow-500 ${active ? "bg-yellow-500" : ""} ${className ?? ""} ${active ? (activeClassName ?? "") : ""}`}
         >
             {children}
         </Link>
@@ -36,9 +37,12 @@ function NavBarLinkButton({
     return (
         <Link
             to={to}
-            className={`h-fit px-4 py-2 cursor-pointer transition rounded-sm ${className ? className : ""}`}
         >
-            {children}
+            <Button
+                className={className}
+            >
+                {children}
+            </Button>
         </Link>
     );
 }
@@ -78,7 +82,7 @@ export function NavBar({ user }: {
                     {user ? (
                         <NavBarLinkButton
                             to="auth/logout"
-                            className="bg-red-500 hover:bg-red-600"
+                            className="border-2 border-transparent text-red-500 hover:border-red-500"
                         >
                             {navigation.formAction === "/auth/logout"
                                 ? "Logging out..."
@@ -88,13 +92,13 @@ export function NavBar({ user }: {
                         <>
                             <NavBarLinkButton
                                 to="auth/register"
-                                className="bg-yellow-400 outline-2 outline-yellow-400 text-neutral-800 hover:bg-yellow-500"
+                                className="bg-yellow-400 outline-yellow-400 hover:bg-yellow-500 hover:outline-yellow-500"
                             >
                                 Register
                             </NavBarLinkButton>
                             <NavBarLinkButton
                                 to="auth/login"
-                                className="outline-2 outline-transparent text-neutral-800 hover:outline-neutral-800"
+                                className="bg-white border-2 border-transparent hover:bg-transparent hover:border-neutral-800"
                             >
                                 Log in
                             </NavBarLinkButton>

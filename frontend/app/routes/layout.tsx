@@ -5,9 +5,10 @@ import {
     type LoaderFunctionArgs,
 } from "react-router";
 
-import { NavBar } from "~/components/nav-bar";
 import { GlobalSpinner } from "~/components/global-spinner";
 import { getSession } from "~/session";
+
+import { NavBar } from "./nav-bar";
 
 export default function Layout() {
     const loaderData = useLoaderData();

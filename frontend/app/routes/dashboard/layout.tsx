@@ -1,5 +1,6 @@
 import { Outlet, redirect, type LoaderFunctionArgs } from "react-router";
 import { getSession } from "~/session";
+import type { Route } from "./+types/layout";
 
 export default function Layout() {
     return (
@@ -18,6 +19,4 @@ async function authMiddleware({ request }: LoaderFunctionArgs) {
     }
 }
 
-export const middleware: Route.MiddlewareFunction[] = [
-    authMiddleware,
-];
+export const middleware: Route.MiddlewareFunction[] = [authMiddleware];
