@@ -14,7 +14,7 @@ const assignmentsRouter = require('./routes/assignments');
 const app = express();
 
 app.use(cors());
-app.use(express.json()); 
+app.use(express.json());
 
 app.use('/api/attendance', attendanceRouter);
 app.use('/api/events', eventsRouter);
@@ -26,8 +26,8 @@ app.use('/api/assignments', assignmentsRouter);
 
 cassandraClient.connect()
   .then(() => {
-    console.log('Berhasil terhubung ke cluster Cassandra di Astra DB!');
-    
+    console.log('Berhasil terhubung ke Cassandra!');
+
     const PORT = process.env.PORT || 8000;
     app.listen(PORT, () => {
       console.log(`Server LectureLog berjalan di http://localhost:${PORT}`);
@@ -35,5 +35,5 @@ cassandraClient.connect()
   })
   .catch(err => {
     console.error('Gagal terhubung ke database:', err);
-    process.exit(1); 
+    process.exit(1);
   });
