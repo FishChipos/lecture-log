@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  cassandra:
+    image: cassandra:latest
+    container_name: lecturelog-cassandra
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=LectureLogCluster
+      - CASSANDRA_DC=datacenter1
+    volumes:
+      - ./init.cql:/docker-entrypoint-initdb.d/init.cql
+      - cassandra_data:/var/lib/cassandra
+    healthcheck:
+      test: ["CMD", "cqlsh", "-u", "cassandra", "-p", "cassandra", "-e", "describe keyspaces"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+volumes:
+  cassandra_data:

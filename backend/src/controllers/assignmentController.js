@@ -11,9 +11,9 @@ const createAssignment = async (req, res) => {
     }
 
     const assignment = await assignmentRepo.createAssignment({
-      course_id, semester, title, description, 
-      deadline: new Date(deadline), 
-      max_score: max_score || 100, 
+      course_id, semester, title, description,
+      deadline: new Date(deadline),
+      max_score: max_score || 100,
       created_by
     });
 
@@ -74,10 +74,10 @@ const submitAssignment = async (req, res) => {
             file_name: req.file.originalname,
             status
           });
-          
-          res.status(201).json({ 
-            message: 'Tugas berhasil dikumpulkan (Dual-Write OK)', 
-            data: submission 
+
+          res.status(201).json({
+            message: 'Tugas berhasil dikumpulkan (Dual-Write OK)',
+            data: submission
           });
         } catch (dbError) {
           console.error('Error saving submission:', dbError);
