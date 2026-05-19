@@ -111,9 +111,31 @@ const gradeAssignment = async (req, res) => {
   }
 };
 
+const getSubmissionsByAssignment = async (req, res) => {
+  try {
+    const { assignmentId } = req.params;
+    const records = await assignmentRepo.getSubmissionsByAssignment(assignmentId);
+    res.status(200).json(records);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+const getSubmissionsByStudent = async (req, res) => {
+  try {
+    const { studentId, semester } = req.params;
+    const records = await assignmentRepo.getSubmissionsByStudent(studentId, semester);
+    res.status(200).json(records);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   createAssignment,
   getAssignments,
   submitAssignment,
-  gradeAssignment
+  gradeAssignment,
+  getSubmissionsByAssignment,
+  getSubmissionsByStudent
 };

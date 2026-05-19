@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const cassandraClient = require('./config/cassandra');
 const attendanceRouter = require('./routes/attendance');
+const authRouter = require('./routes/auth');
 const eventsRouter = require('./routes/events');
 const usersRouter = require('./routes/users');
 const coursesRouter = require('./routes/courses');
@@ -16,6 +17,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use('/api/auth', authRouter);
 app.use('/api/attendance', attendanceRouter);
 app.use('/api/events', eventsRouter);
 app.use('/api/users', usersRouter);
