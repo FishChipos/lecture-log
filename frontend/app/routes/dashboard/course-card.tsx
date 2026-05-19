@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function ClassCard({
+export function CourseCard({
   name,
   imageSrc,
   imageAlt,

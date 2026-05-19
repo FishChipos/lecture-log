@@ -1,5 +1,5 @@
 import type { Route } from "./+types/dashboard";
-import { ClassCard } from "./class-card";
+import { CourseCard } from "./course-card";
 
 export default function Dashboard({ loaderData }: Route.ComponentProps) {
   const user = loaderData.user;
@@ -11,7 +11,7 @@ export default function Dashboard({ loaderData }: Route.ComponentProps) {
       <div>Your courses</div>
       <div className="grid grid-cols-3">
         {courses.map((course, index) => (
-          <ClassCard 
+          <CourseCard 
             name={course.name}
             imageSrc=""
             imageAlt="Course image"
