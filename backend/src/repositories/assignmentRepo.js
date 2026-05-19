@@ -67,10 +67,24 @@ const gradeAssignment = async ({ assignment_id, student_id, course_id, semester,
   await client.batch(queries, { prepare: true });
 };
 
+const getSubmissionsByAssignment = async (assignment_id) => {
+  const query = `SELECT * FROM submissions_by_assignment WHERE assignment_id = ?`;
+  const result = await client.execute(query, [assignment_id], { prepare: true });
+  return result.rows;
+};
+
+const getSubmissionsByStudent = async (student_id, semester) => {
+  const query = `SELECT * FROM submissions_by_student WHERE student_id = ? AND semester = ?`;
+  const result = await client.execute(query, [student_id, semester], { prepare: true });
+  return result.rows;
+};
+
 module.exports = {
   createAssignment,
   getAssignmentsByCourse,
   getAssignmentDetails,
   submitAssignment,
-  gradeAssignment
+  gradeAssignment,
+  getSubmissionsByAssignment,
+  getSubmissionsByStudent
 };

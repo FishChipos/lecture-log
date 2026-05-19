@@ -12,6 +12,12 @@ CREATE TABLE IF NOT EXISTS users (
     created_at timestamp
 );
 
+CREATE TABLE IF NOT EXISTS user_credentials (
+    email text PRIMARY KEY,
+    user_id uuid,
+    password_hash text
+);
+
 CREATE TABLE IF NOT EXISTS courses_by_user (
     user_id uuid,
     course_id uuid,

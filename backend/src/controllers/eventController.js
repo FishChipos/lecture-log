@@ -42,7 +42,24 @@ const createEvent = async (req, res) => {
     }
 };
 
+const getEventHistory = async (req, res) => {
+    try {
+        const { courseId, bucketId } = req.params;
+
+        const result = await eventRepo.getEventsByCourseAndBucket(courseId, parseInt(bucketId, 10));
+        
+        res.json({
+            bucket: bucketId,
+            total_events: result.rowLength,
+            events: result.rows
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 module.exports = {
     getEvents,
-    createEvent
+    createEvent,
+    getEventHistory
 };
