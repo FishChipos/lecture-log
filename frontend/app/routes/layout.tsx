@@ -18,10 +18,10 @@ export default function Layout() {
   const isNavigating = Boolean(navigation.location);
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex h-full flex-col">
       <NavBar user={userId ? { userId } : null} />
       {isNavigating ? (
-        <div className="flex grow justify-center items-center">
+        <div className="flex grow items-center justify-center">
           <GlobalSpinner />
         </div>
       ) : (

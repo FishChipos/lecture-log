@@ -16,7 +16,7 @@ export function Button({
   return (
     <button
       type={type ? type : "button"}
-      className={`h-fit font-semibold text-neutral-800 px-4 py-2 cursor-pointer transition rounded-sm ${className ?? ""}`}
+      className={`h-fit cursor-pointer rounded-sm px-4 py-2 font-semibold text-neutral-800 transition ${className ?? ""}`}
       onMouseEnter={onMouseEnter ?? (() => {})}
       onMouseLeave={onMouseLeave ?? (() => {})}
     >

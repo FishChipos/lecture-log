@@ -10,7 +10,7 @@ export function TextField({
       type="text"
       name={name}
       placeholder={placeholder}
-      className="grow px-4 py-2 rounded-sm outline-2 outline-yellow-400 bg-white focus:outline-neutral-800"
+      className="grow rounded-sm bg-white px-4 py-2 outline-2 outline-yellow-400 focus:outline-neutral-800"
     />
   );
 }

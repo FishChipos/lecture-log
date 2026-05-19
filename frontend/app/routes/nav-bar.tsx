@@ -18,7 +18,8 @@ function NavBarLink({
   return (
     <Link
       to={href}
-      className={`flex h-full p-4 justify-center items-center transition bg-yellow-400 font-semibold text-neutral-800 hover:bg-yellow-500 ${active ? "bg-yellow-500" : ""} ${className ?? ""} ${active ? (activeClassName ?? "") : ""}`}
+      className={`flex h-full items-center justify-center bg-yellow-400 p-4 font-semibold text-neutral-800 transition hover:bg-yellow-500 hover:text-white ${active ? "bg-yellow-500 text-white" : ""} ${className ?? ""} ${active ? (activeClassName ?? "") : ""}`}
+      viewTransition
     >
       {children}
     </Link>
@@ -35,7 +36,7 @@ function NavBarLinkButton({
   className?: string;
 }) {
   return (
-    <Link to={to}>
+    <Link to={to} viewTransition>
       <Button className={className}>{children}</Button>
     </Link>
   );
@@ -54,7 +55,7 @@ export function NavBar({ user }: { user: User | null }) {
   return (
     <>
       <div className="grid grid-cols-3">
-        <div className="flex gap-4 p-4 items-center">
+        <div className="m-4 flex cursor-pointer items-center gap-4">
           {user ? (
             <>
               <img
@@ -69,10 +70,10 @@ export function NavBar({ user }: { user: User | null }) {
             ""
           )}
         </div>
-        <div className="flex gap-4 p-4 justify-center items-center font-bold text-2xl">
+        <div className="m-4 flex items-center justify-center gap-4 text-2xl font-bold">
           Lecture Log
         </div>
-        <div className="flex flex-row-reverse gap-4 p-4 items-center">
+        <div className="m-4 flex flex-row-reverse items-center gap-4">
           {user ? (
             <NavBarLinkButton
               to="auth/logout"
@@ -86,13 +87,13 @@ export function NavBar({ user }: { user: User | null }) {
             <>
               <NavBarLinkButton
                 to="auth/register"
-                className="bg-yellow-400 outline-yellow-400 hover:bg-yellow-500 hover:outline-yellow-500"
+                className="bg-yellow-400 outline-yellow-400 hover:bg-yellow-500 hover:text-white hover:outline-yellow-500"
               >
                 Register
               </NavBarLinkButton>
               <NavBarLinkButton
                 to="auth/login"
-                className="bg-white border-2 border-transparent hover:bg-transparent hover:border-neutral-800"
+                className="border-2 border-transparent bg-white hover:border-neutral-800 hover:bg-transparent"
               >
                 Log in
               </NavBarLinkButton>
@@ -100,8 +101,8 @@ export function NavBar({ user }: { user: User | null }) {
           )}
         </div>
       </div>
-      <div className="sticky top-0 flex flex-col w-full">
-        <div className="flex w-full h-8 bg-yellow-400">
+      <div className="sticky top-0 flex w-full flex-col">
+        <div className="flex h-8 w-full bg-yellow-400">
           {navBarLinkData.map((data, index) => (
             <NavBarLink
               key={index}
@@ -112,7 +113,7 @@ export function NavBar({ user }: { user: User | null }) {
             </NavBarLink>
           ))}
         </div>
-        <div className="w-full h-1 bg-yellow-500"></div>
+        <div className="h-1 w-full bg-yellow-500"></div>
       </div>
     </>
   );
